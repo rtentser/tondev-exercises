@@ -36,15 +36,17 @@ contract Query {
 		_;
 	}
 
+    // Добавляет человека в конец очереди
     function addToQuery (string person) public checkOwnerAndAccept {
         query.push(person);
     }
 
+    // Убирает человека из начала очереди
     function next () public checkOwnerAndAccept {
         query = tail(query);
     }
 
-    // Функция возвращает массив кроме нулевого элемента — остаток очереди в данном случае
+    // Убирает первый элемент из массива
     function tail (string[] list) public pure returns (string[]) {
         string[] tailList;
         for (uint i = 1; i < list.length; i++) {
