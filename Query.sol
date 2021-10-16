@@ -8,9 +8,6 @@ pragma AbiHeader expire;
 
 // This is class that describes you smart contract.
 contract Query {
-    // Contract can have an instance variables.
-    // In this example instance variable `timestamp` is used to store the time of `constructor` or `touch`
-    // function call
     string[] public query;
 
     // Contract can have a `constructor` – function that will be called when contract will be deployed to the blockchain.
