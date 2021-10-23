@@ -1,0 +1,56 @@
+{
+	"ABI version": 2,
+	"version": "2.1",
+	"header": ["time", "expire"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "addToQuery",
+			"inputs": [
+				{"name":"person","type":"string"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "next",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "tail",
+			"inputs": [
+				{"name":"list","type":"string[]"}
+			],
+			"outputs": [
+				{"name":"value0","type":"string[]"}
+			]
+		},
+		{
+			"name": "query",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"query","type":"string[]"}
+			]
+		}
+	],
+	"data": [
+	],
+	"events": [
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"query","type":"string[]"}
+	]
+}
