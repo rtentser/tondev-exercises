@@ -1,0 +1,51 @@
+{
+	"ABI version": 2,
+	"version": "2.1",
+	"header": ["time", "expire"],
+	"functions": [
+		{
+			"name": "addBook",
+			"inputs": [
+				{"name":"title","type":"string"},
+				{"name":"author","type":"string"},
+				{"name":"pages","type":"uint256"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setPrice",
+			"inputs": [
+				{"name":"title","type":"string"},
+				{"name":"price","type":"uint256"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "constructor",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "lib",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"title","type":"string"},{"name":"author","type":"string"},{"name":"pages","type":"uint256"},{"name":"price","type":"uint256"}],"name":"lib","type":"map(uint256,tuple[])"}
+			]
+		}
+	],
+	"data": [
+	],
+	"events": [
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"components":[{"name":"title","type":"string"},{"name":"author","type":"string"},{"name":"pages","type":"uint256"},{"name":"price","type":"uint256"}],"name":"lib","type":"map(uint256,tuple[])"}
+	]
+}
