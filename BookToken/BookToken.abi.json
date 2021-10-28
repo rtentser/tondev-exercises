@@ -34,7 +34,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"title","type":"string"},{"name":"author","type":"string"},{"name":"pages","type":"uint256"},{"name":"price","type":"uint256"}],"name":"lib","type":"map(uint256,tuple[])"}
+				{"components":[{"name":"title","type":"string"},{"name":"author","type":"string"},{"name":"pages","type":"uint256"},{"name":"price","type":"uint256"}],"name":"lib","type":"map(address,tuple[])"}
 			]
 		}
 	],
@@ -46,6 +46,6 @@
 		{"name":"_pubkey","type":"uint256"},
 		{"name":"_timestamp","type":"uint64"},
 		{"name":"_constructorFlag","type":"bool"},
-		{"components":[{"name":"title","type":"string"},{"name":"author","type":"string"},{"name":"pages","type":"uint256"},{"name":"price","type":"uint256"}],"name":"lib","type":"map(uint256,tuple[])"}
+		{"components":[{"name":"title","type":"string"},{"name":"author","type":"string"},{"name":"pages","type":"uint256"},{"name":"price","type":"uint256"}],"name":"lib","type":"map(address,tuple[])"}
 	]
 }

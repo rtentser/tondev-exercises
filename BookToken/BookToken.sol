@@ -17,15 +17,15 @@ contract BookToken {
     }
 
     // Библиотека, где каждый владеет своей полкой — массивом книг
-    mapping (uint256 => Book[]) public lib;
+    mapping (address => Book[]) public lib;
 
     // Модификатор, проверяющий уникальность названия книги
     modifier uniqueTitle(string title) {
-        optional (uint256, Book[]) shelf = lib.min(); // Начиная с первой полки
+        optional (address, Book[]) shelf = lib.min(); // Начиная с первой полки
         
         // for получался слишком громоздким, заменил на while
         while (shelf.hasValue()) { // Пока полки не закончились
-            (uint256 owner, Book[] books) = shelf.get();
+            (address owner, Book[] books) = shelf.get();
             for (uint book = 0; book < books.length; book++) {
                 require(title != books[book].title, // Название должно быть уникальным
                     99, // Не знаю, какой код подходит в данном случае, использую не занятый
@@ -40,8 +40,8 @@ contract BookToken {
     // Добавляет книгу в библиотеку
     function addBook (string title, string author, uint pages) public uniqueTitle (title) {
         Book book = Book(title, author, pages, 0); // Цена книги изначально не задана и инициализируется нулём
-        uint256 sender = msg.pubkey(); // Публичный ключ служит идентификатором владельца
         tvm.accept();
+        address sender = address(this);
 
         if (lib.exists(sender)) { // Если отправитель уже имеет полку
             lib[sender].push(book);
@@ -51,19 +51,21 @@ contract BookToken {
     }
 
     // Задать цену книги перед продажей
-    function setPrice (string title, uint price) public { 
-        require(lib.exists(msg.pubkey()), 97, "У отправителя нет книг!");
+    function setPrice (string title, uint price) public {
+        tvm.accept();
+        address sender = address(this);
+        require(lib.exists(sender), 97, "У отправителя нет книг!");
                 
         uint b = 0;
-        for(; b < lib[msg.pubkey()].length; b++) {
+        for(; b < lib[sender].length; b++) {
             // Если такая книга у отправителя есть
-            if (lib[msg.pubkey()][b].title == title) {
+            if (lib[sender][b].title == title) {
                 tvm.accept();
-                lib[msg.pubkey()][b].price = price; // Цена меняется
+                lib[sender][b].price = price; // Цена меняется
                 break; // Поиски книги прекращаются
             }
         }
         // Если книгу не нашли (цикл прервался полным перебором)
-        require(b < lib[msg.pubkey()].length, 98, "У отправителя нет такой книги!");
+        require(b < lib[sender].length, 98, "У отправителя нет такой книги!");
     }
 }
