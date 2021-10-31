@@ -1,0 +1,68 @@
+{
+	"ABI version": 2,
+	"version": "2.1",
+	"header": ["time", "expire"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"station","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "takeDamage",
+			"inputs": [
+				{"name":"damage","type":"uint256"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "attackObject",
+			"inputs": [
+				{"name":"target","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "lives",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"lives","type":"int256"}
+			]
+		},
+		{
+			"name": "defence",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"defence","type":"uint256"}
+			]
+		},
+		{
+			"name": "attack",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"attack","type":"uint256"}
+			]
+		}
+	],
+	"data": [
+	],
+	"events": [
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"lives","type":"int256"},
+		{"name":"defence","type":"uint256"},
+		{"name":"attack","type":"uint256"},
+		{"name":"baseStation","type":"address"}
+	]
+}

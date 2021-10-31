@@ -1,0 +1,74 @@
+{
+	"ABI version": 2,
+	"version": "2.1",
+	"header": ["time", "expire"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "addUnit",
+			"inputs": [
+				{"name":"unit","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "removeUnit",
+			"inputs": [
+				{"name":"unit","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "takeDamage",
+			"inputs": [
+				{"name":"damage","type":"uint256"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "lives",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"lives","type":"int256"}
+			]
+		},
+		{
+			"name": "defence",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"defence","type":"uint256"}
+			]
+		},
+		{
+			"name": "units",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"units","type":"address[]"}
+			]
+		}
+	],
+	"data": [
+	],
+	"events": [
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"lives","type":"int256"},
+		{"name":"defence","type":"uint256"},
+		{"name":"units","type":"address[]"}
+	]
+}
