@@ -1,3 +1,4 @@
 *.json
 !*.abi.json
 !*.tvc
+*.log
