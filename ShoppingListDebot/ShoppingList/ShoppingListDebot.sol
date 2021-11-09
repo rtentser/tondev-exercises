@@ -5,12 +5,13 @@ pragma AbiHeader pubkey;
 
 import '../Debot.sol';
 import '../Terminal.sol';
+import '../Menu.sol';
 
 contract ShoppingListDebot is Debot {
     bytes m_icon;
 
     function start() public override {
-        Terminal.print(0, "Hello, Debot World!");
+        Terminal.print(tvm.functionId(menu), "Hello, Debot World!");
     }
 
     function getDebotInfo() public functionID(0xDEB) view override returns(
@@ -29,7 +30,22 @@ contract ShoppingListDebot is Debot {
         icon = m_icon;
     }
 
-        function getRequiredInterfaces() public view override returns (uint256[] interfaces) {
-            return [Terminal.ID];
-        }
+    function getRequiredInterfaces() public view override returns (uint256[] interfaces) {
+        return [Terminal.ID, Menu.ID];
+    }
+
+    function menu() public {
+        Menu.select("The Simplest Menu", "It doesn't do much", [
+            MenuItem("Just exit", "", tvm.functionId(justExit)),
+            MenuItem("Exit with music", "", tvm.functionId(exitWithMusic))
+        ]);
+    }
+
+    function justExit() public {
+        Terminal.print(0, "Goodbye!");
+    }
+
+    function exitWithMusic() public {
+        Terminal.print(0, "La-la-la! Goodbye!");
+    }
 }

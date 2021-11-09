@@ -36,6 +36,27 @@
 			]
 		},
 		{
+			"name": "menu",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "justExit",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "exitWithMusic",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "getDebotOptions",
 			"inputs": [
 			],
