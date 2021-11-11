@@ -50,6 +50,97 @@
 			]
 		},
 		{
+			"name": "getPurchases",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "showPurchases",
+			"inputs": [
+				{"components":[{"name":"id","type":"uint256"},{"name":"name","type":"bytes"},{"name":"quantity","type":"uint256"},{"name":"timeAdded","type":"uint256"},{"name":"isBought","type":"bool"},{"name":"price","type":"uint256"}],"name":"list","type":"tuple[]"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getSummary",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "showSummary",
+			"inputs": [
+				{"components":[{"name":"payed","type":"uint256"},{"name":"notPayed","type":"uint256"},{"name":"moneySpent","type":"uint256"}],"name":"summ","type":"tuple"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "addPurchase",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "addPurchase_",
+			"inputs": [
+				{"name":"value","type":"bytes"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "addPurchase__",
+			"inputs": [
+				{"name":"value","type":"bytes"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "removePurchase",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "removePurchase_",
+			"inputs": [
+				{"name":"value","type":"bytes"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "buy",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "buy_",
+			"inputs": [
+				{"name":"value","type":"bytes"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "buy__",
+			"inputs": [
+				{"name":"value","type":"bytes"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "start",
 			"inputs": [
 			],

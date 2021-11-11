@@ -7,9 +7,9 @@ import '../Debot.sol';
 import '../Terminal.sol';
 import '../Menu.sol';
 
-import 'BaseShoppingDebot.sol';
+import 'ExtendedShoppingDebot.sol';
 
-contract ShoppingDebot is BaseShoppingDebot {
+contract ShoppingDebot is ExtendedShoppingDebot {
 
         function getDebotInfo() public functionID(0xDEB) view override returns(
         string name, string version, string publisher, string caption, string author,
@@ -33,8 +33,11 @@ contract ShoppingDebot is BaseShoppingDebot {
 
     function menu() public override {
         Menu.select("The Simplest Menu", "It doesn't do much", [
-            MenuItem("Just exit", "", tvm.functionId(justExit)),
-            MenuItem("Exit with music", "", tvm.functionId(exitWithMusic))
+            MenuItem("Add Purchase", "", tvm.functionId(addPurchase)),
+            MenuItem("Show Shopping List", "", tvm.functionId(getPurchases)),
+            MenuItem("Show Summary", "", tvm.functionId(getSummary)),
+            MenuItem("Buy Item", "", tvm.functionId(buy)),
+            MenuItem("Remove Item", "", tvm.functionId(removePurchase))
         ]);
     }
 

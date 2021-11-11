@@ -16,12 +16,14 @@ contract ShoppingList is ShoppingInterface, Owned {
         nextID = 0;
     }
 
-    function getList() public view override returns (Purchase[]) {
-        return shoppingList;
+    function getList() public override returns (Purchase[] list) {
+        tvm.accept();
+        list = shoppingList;
     }
 
-    function getSummary() public view override returns (Summary) {
-        return summary;
+    function getSummary() public override returns (Summary summ) {
+        tvm.accept();
+        summ = summary;
     }
 
     function findID(uint id) internal returns(uint) {
