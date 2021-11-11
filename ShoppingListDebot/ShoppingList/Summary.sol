@@ -1,7 +1,7 @@
 pragma ton-solidity >= 0.35.0;
 pragma AbiHeader expire;
 
-struct ShoppingSummary {
+struct Summary {
     uint payed;
     uint notPayed;
     uint moneySpent;

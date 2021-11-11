@@ -1,19 +1,27 @@
-pragma ton-solidity >= 0.35.0;
+pragma ton-solidity >=0.35.0;
 pragma AbiHeader expire;
+pragma AbiHeader time;
+pragma AbiHeader pubkey;
 
-import 'ShoppingListInterface.sol';
+import 'ShoppingInterface.sol';
 import 'Owned.sol';
-import 'Purchase.sol';
-import 'ShoppingSummary.sol';
 
-contract ShoppingList is ShoppingListInterface, Owned {
-    Purchase[] public shoppingList;
-    ShoppingSummary public summary;
-    uint public nextID;
+contract ShoppingList is ShoppingInterface, Owned {
+    Purchase[] shoppingList;
+    Summary summary;
+    uint nextID;
 
-    constructor() public Owned(msg.pubkey()) {
-        summary = ShoppingSummary(0,0,0);
+    constructor(uint256 pubkey) public Owned(pubkey) {
+        summary = Summary(0,0,0);
         nextID = 0;
+    }
+
+    function getList() public view override returns (Purchase[]) {
+        return shoppingList;
+    }
+
+    function getSummary() public view override returns (Summary) {
+        return summary;
     }
 
     function findID(uint id) internal returns(uint) {
@@ -23,14 +31,14 @@ contract ShoppingList is ShoppingListInterface, Owned {
         revert(98, "Этот товар не найден в списке."); // Если id не найден, то ошибка
     }
 
-    function addPurchase(string name, uint quantity) public onlyOwner {
+    function addPurchase(string name, uint quantity) public override onlyOwner {
         Purchase purchase = Purchase(nextID, name, quantity, tx.timestamp, false, 0);
         shoppingList.push(purchase);
         summary.notPayed += quantity;
         nextID++;
     }
 
-    function removePurchase(uint id) public onlyOwner {
+    function removePurchase(uint id) public override onlyOwner {
         uint index = findID(id);
                 
         if(shoppingList[index].isBought) {
@@ -44,7 +52,7 @@ contract ShoppingList is ShoppingListInterface, Owned {
         shoppingList.pop();
     }
 
-    function buy(uint id, uint price) public onlyOwner {
+    function buy(uint id, uint price) public override onlyOwner {
         uint index = findID(id);
         require(!shoppingList[index].isBought, 97, "Этот товар уже куплен.");
 

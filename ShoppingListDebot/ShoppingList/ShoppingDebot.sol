@@ -7,14 +7,11 @@ import '../Debot.sol';
 import '../Terminal.sol';
 import '../Menu.sol';
 
-contract ShoppingListDebot is Debot {
-    bytes m_icon;
+import 'BaseShoppingDebot.sol';
 
-    function start() public override {
-        Terminal.print(tvm.functionId(menu), "Hello, Debot World!");
-    }
+contract ShoppingDebot is BaseShoppingDebot {
 
-    function getDebotInfo() public functionID(0xDEB) view override returns(
+        function getDebotInfo() public functionID(0xDEB) view override returns(
         string name, string version, string publisher, string caption, string author,
         address support, string hello, string language, string dabi, bytes icon
     ) {
@@ -27,14 +24,14 @@ contract ShoppingListDebot is Debot {
         hello = "Hello, wanna buy something?";
         language = "en";
         dabi = m_debotAbi.get();
-        icon = m_icon;
+        icon = "";
     }
 
     function getRequiredInterfaces() public view override returns (uint256[] interfaces) {
         return [Terminal.ID, Menu.ID];
     }
 
-    function menu() public {
+    function menu() public override {
         Menu.select("The Simplest Menu", "It doesn't do much", [
             MenuItem("Just exit", "", tvm.functionId(justExit)),
             MenuItem("Exit with music", "", tvm.functionId(exitWithMusic))
