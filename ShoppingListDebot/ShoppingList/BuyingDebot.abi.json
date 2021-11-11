@@ -36,20 +36,6 @@
 			]
 		},
 		{
-			"name": "justExit",
-			"inputs": [
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "exitWithMusic",
-			"inputs": [
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "getPurchases",
 			"inputs": [
 			],
@@ -173,7 +159,7 @@
 			]
 		},
 		{
-			"name": "onSuccess",
+			"name": "backToMenu",
 			"inputs": [
 			],
 			"outputs": [
