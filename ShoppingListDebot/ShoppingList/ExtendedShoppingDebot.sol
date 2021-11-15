@@ -12,6 +12,10 @@ abstract contract ExtendedShoppingDebot is BaseShoppingDebot {
     string tempName;
     uint tempID;
 
+    function getSummaryMasked() public {
+        getSummary();
+    }
+
     function getPurchases() public {
         optional (uint) none;
         ShoppingInterface(listAddress).getList {
@@ -43,10 +47,10 @@ abstract contract ExtendedShoppingDebot is BaseShoppingDebot {
         } else {
             Terminal.print(0, "Your shopping list is empty!");
         }
-        backToMenu();
+        getSummaryMasked();
     }
 
-    function getSummary() public override {
+    function getSummary() public override{
         optional (uint) none;
         ShoppingInterface(listAddress).getSummary {
             abiVer: 2,
@@ -68,6 +72,7 @@ abstract contract ExtendedShoppingDebot is BaseShoppingDebot {
             summ.moneySpent,
             SEPARATOR
         ));
+        menu();
     }
 
     function addPurchase() public {
@@ -90,11 +95,11 @@ abstract contract ExtendedShoppingDebot is BaseShoppingDebot {
                 pubkey: none,
                 time: uint64(now),
                 expire: 0,
-                callbackId: tvm.functionId(backToMenu),
+                callbackId: tvm.functionId(getSummaryMasked),
                 onErrorId: tvm.functionId(onError)
             } (tempName, quantity);
         } else {
-            Terminal.print(tvm.functionId(backToMenu), "It's not a valid quantity!");
+            Terminal.print(tvm.functionId(getSummaryMasked), "It's not a valid quantity!");
         }
     }
 
@@ -113,11 +118,11 @@ abstract contract ExtendedShoppingDebot is BaseShoppingDebot {
                 pubkey: none,
                 time: uint64(now),
                 expire: 0,
-                callbackId: tvm.functionId(backToMenu),
+                callbackId: tvm.functionId(getSummaryMasked),
                 onErrorId: tvm.functionId(onError)
             } (id);
         } else {
-            Terminal.print(tvm.functionId(backToMenu), "It's not a valid id!");
+            Terminal.print(tvm.functionId(getSummaryMasked), "It's not a valid id!");
         }
     }
 
@@ -131,7 +136,7 @@ abstract contract ExtendedShoppingDebot is BaseShoppingDebot {
             tempID = id;
             Terminal.input(tvm.functionId(buy__), "Please enter the price of the purchase: ", false);
         } else {
-            Terminal.print(tvm.functionId(backToMenu), "It's not a valid id!");
+            Terminal.print(tvm.functionId(getSummaryMasked), "It's not a valid id!");
         }
     }
 
@@ -146,11 +151,13 @@ abstract contract ExtendedShoppingDebot is BaseShoppingDebot {
                 pubkey: none,
                 time: uint64(now),
                 expire: 0,
-                callbackId: tvm.functionId(backToMenu),
+                callbackId: tvm.functionId(getSummaryMasked),
                 onErrorId: tvm.functionId(onError)
             } (tempID, price);
         } else {
-            Terminal.print(tvm.functionId(backToMenu), "It's not a valid price!");
+            Terminal.print(tvm.functionId(getSummaryMasked), "It's not a valid price!");
         }
     }
+
+    function menu() public virtual;
 }

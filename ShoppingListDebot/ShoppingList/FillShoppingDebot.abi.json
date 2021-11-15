@@ -36,6 +36,13 @@
 			]
 		},
 		{
+			"name": "getSummaryMasked",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "getPurchases",
 			"inputs": [
 			],
@@ -154,13 +161,6 @@
 			"name": "statusActions",
 			"inputs": [
 				{"name":"acc_type","type":"int8"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "backToMenu",
-			"inputs": [
 			],
 			"outputs": [
 			]

@@ -52,7 +52,7 @@ abstract contract BaseShoppingDebot is Debot, Upgradable {
 
     function statusActions (int8 acc_type) public {
         if (acc_type == 1) { // the account is active and the contract is already deployed
-            backToMenu();
+            getSummary();
         } else if (acc_type == -1) { // the account does not exist
             Terminal.print(0, "You don't have a shopping list yet, so a new contract with an initial balance of 0.2 tokens will be deployed");
             AddressInput.get(tvm.functionId(creditAccount), "Select a wallet for payment. We will ask you to sign two transactions: ");
@@ -69,7 +69,7 @@ abstract contract BaseShoppingDebot is Debot, Upgradable {
         TvmCell deployMsg = tvm.buildExtMsg({
             abiVer: 2,
             dest: listAddress,
-            callbackId: tvm.functionId(backToMenu),
+            callbackId: tvm.functionId(getSummary),
             onErrorId:  tvm.functionId(onError),
             time: 0,
             expire: 0,
@@ -79,11 +79,6 @@ abstract contract BaseShoppingDebot is Debot, Upgradable {
             call: {ShoppingList, publicKey}
         });
         tvm.sendrawmsg(deployMsg, 1);
-    }
-
-    function backToMenu() public {
-        getSummary();
-        menu();
     }
     
     function creditAccount (address value) public {
@@ -118,5 +113,4 @@ abstract contract BaseShoppingDebot is Debot, Upgradable {
     }
 
     function getSummary() public virtual;
-    function menu() public virtual;
 }
